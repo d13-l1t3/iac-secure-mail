@@ -1,0 +1,52 @@
+<?php
+/**
+ * AutoMailDeploy — Roundcube custom configuration
+ * Variables injected at install time.
+ *
+ * This file is loaded by the Docker entrypoint AFTER config.docker.inc.php,
+ * so our settings here override the auto-generated Docker config.
+ */
+
+$config['product_name']   = 'Webmail — ${MAIL_DOMAIN}';
+$config['des_key']        = '${ROUNDCUBE_DES_KEY}';
+$config['skin']           = 'elastic';
+$config['language']       = 'en_US';
+
+// IMAP — override Docker-generated host to include SSL options
+$config['imap_host']      = 'ssl://dovecot:993';
+$config['imap_conn_options'] = [
+    'ssl' => [
+        'verify_peer'       => false,
+        'verify_peer_name'  => false,
+        'allow_self_signed' => true,
+    ],
+];
+
+// SMTP — override Docker-generated host to include SSL options
+$config['smtp_host']      = 'tls://postfix:587';
+$config['smtp_user']      = '%u';
+$config['smtp_pass']      = '%p';
+$config['smtp_conn_options'] = [
+    'ssl' => [
+        'verify_peer'       => false,
+        'verify_peer_name'  => false,
+        'allow_self_signed' => true,
+    ],
+];
+
+// Plugins
+$config['plugins'] = ['archive', 'zipdownload', 'managesieve'];
+
+// ManageSieve
+$config['managesieve_host'] = 'dovecot';
+$config['managesieve_port'] = 4190;
+
+// Security
+$config['force_https']       = true;
+$config['use_https']         = true;
+$config['login_autocomplete'] = 0;
+$config['ip_check']          = true;
+$config['session_lifetime']  = 30;
+
+// Drafts auto-save
+$config['draft_autosave']    = 60;

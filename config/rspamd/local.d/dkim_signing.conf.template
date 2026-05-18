@@ -1,0 +1,10 @@
+# DKIM signing configuration — domain injected by install.sh
+path = "/dkim/${MAIL_DOMAIN}.dkim.key";
+selector = "dkim";
+domain {
+    ${MAIL_DOMAIN} {
+        path = "/dkim/${MAIL_DOMAIN}.dkim.key";
+        selector = "dkim";
+    }
+}
+allow_username_mismatch = true;
