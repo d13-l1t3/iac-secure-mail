@@ -88,7 +88,7 @@ Fully containerized mail infrastructure with automated security hardening, backu
 ### Prerequisites
 
 - **OS:** Debian 12+ / Ubuntu 22.04+ (any systemd-based Linux)
-- **Resources:** 2 CPU cores, 2 GB RAM minimum
+- **Resources:** 2 CPU cores, 2 GB RAM
 - **Root access** (or sudo)
 - **Ports available:** 22, 25, 80, 443, 465, 587, 993, 4190
 - For production: a registered domain with DNS access
@@ -99,14 +99,14 @@ Fully containerized mail infrastructure with automated security hardening, backu
 
 ```bash
 # 1. Clone
-git clone https://github.com/d13-l1t3/automaildeploy.git
+git clone https://github.com/d13-l1t3/iac-secure-mail.git
 cd automaildeploy
 
 # 2. Configure
 cp .env.example .env
 nano .env          # Fill in your domain, IP, passwords
 
-# 3. Install (as root)
+# 3. Install
 sudo bash install.sh
 
 # 4. Wait for services to initialize
@@ -171,7 +171,7 @@ All settings are in a single **`.env`** file. Copy from `.env.example` and edit:
 
 ## Proof of Concept
 
-**Yes, `run_tests.sh` is a complete Proof of Concept.** It validates 17 categories with 43+ individual assertions:
+**`run_tests.sh` is a complete Proof of Concept.** It validates 17 categories with 43+ individual assertions:
 
 ```bash
 sudo bash run_tests.sh
@@ -205,8 +205,6 @@ Expected output:
 
   All critical tests passed! ✔
 ```
-
-The test suite uses only the deployed infrastructure — no mocking, no stubs. Every test hits real running services.
 
 ---
 
@@ -282,7 +280,7 @@ After adding records, verify them:
 ./verify_dns.sh
 ```
 
-> **Why can't DNS be automated?** DNS records live on your domain registrar's nameservers (Cloudflare, GoDaddy, Namecheap, etc.). Each provider has a different API and dashboard. The `verify_dns.sh` script checks if records are correctly set and tells you exactly what's missing.
+> **DNS can not be automated** DNS records live on your domain registrar's nameservers (Cloudflare, GoDaddy, Namecheap, etc.). Each provider has a different API and dashboard. The `verify_dns.sh` script checks if records are correctly set and tells exactly what's missing.
 
 ---
 
@@ -361,7 +359,7 @@ sudo ./monitor.sh
 
 ## Uninstalling
 
-Full cleanup — reverses everything `install.sh` did:
+Reverses everything `install.sh` did:
 
 ```bash
 sudo bash uninstall.sh
