@@ -1,4 +1,4 @@
-# AutoMailDeploy
+# IaC AutoMail Deploy
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Tests: 43/43](https://img.shields.io/badge/Tests-43%2F43%20Passing-brightgreen)](#proof-of-concept)
