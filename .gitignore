@@ -1,0 +1,17 @@
+.env
+config/ssl/
+config/postfix/main.cf
+config/postfix/master.cf
+config/postfix/virtual_mailbox_domains
+config/postfix/virtual_mailbox_maps
+config/dovecot/dovecot.conf
+config/dovecot/passwd
+config/nginx/mail.conf
+config/rspamd/local.d/dkim_signing.conf
+config/rspamd/local.d/worker-controller.inc
+config/roundcube/config.inc.php
+dkim/*.key
+dkim/*.pub
+data/
+backups/
+DNS_RECORDS.txt
